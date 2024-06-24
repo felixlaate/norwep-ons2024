@@ -21,7 +21,7 @@ const Poster: React.FC<PosterProps> = ({ imageUrl, videoUrl }) => {
 
             {/*<Promo videoURL={site[0].videoUrl} sponsors={site[0].sponsors} />*/}
             <div className='pt-5 d-none d-md-block' >
-                <img src={imageUrl} style={{ height: '500px', width: '100%', borderRadius: '0px 50px 50px 0px' }} />
+                <img src={imageUrl} style={{ height: '500px', width: '100%', borderRadius: '0px 50px 50px 0px', objectFit: 'cover' }} />
             </div>
             <div className="pt-3 d-block d-md-none">
                 <div className="poster-wrapper-small">

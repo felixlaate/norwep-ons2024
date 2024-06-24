@@ -37,7 +37,8 @@ const Navbar: React.FC = () => {
     <nav className="navbar navbar-norwep navbar-expand-lg bg-body-tertiary pt-5">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
-          <img src="/img/01-Hovedlogo-RGB.png" width="177" height="40" className="d-inline-block align-top pe-3" />
+          {/*<div className="lead pb-2 text-medium" style={{ fontSize: '14px' }}>International Markets is presented by:</div>*/}
+          <img src="/img/01-Hovedlogo-RGB.png" width="183" height="40" className="d-inline-block align-top pe-3" />
           <img src="/img/ons-logo.png" width="112" height="36" className="d-inline-block align-top mt-1" />
         </a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
