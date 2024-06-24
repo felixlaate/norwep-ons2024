@@ -43,22 +43,27 @@ const Navbar: React.FC = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link underline-animation" onClick={() => scrollToSection('delegations')} href="#delegations">Delegations</a>
+              <a className="nav-link underline-animation" onClick={() => scrollToSection('about')} href="/#about">About</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link underline-animation" onClick={() => scrollToSection('hostingCompanies')} href="#hostingCompanies">Hosting companies</a>
+              <a className="nav-link underline-animation" onClick={() => scrollToSection('delegations')} href="/#delegations">Delegations</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link underline-animation" onClick={() => scrollToSection('hostingCompanies')} href="/#hostingCompanies">Hosting companies</a>
             </li>
             <li className="nav-item">
               <a className="nav-link underline-animation" href="program">Program</a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link underline-animation" onClick={() => scrollToSection('about')} href="#about">About</a>
-            </li>
+
             {data?.map((item: any) => (
               <li key={item._id} className="nav-item">
                 <a className="nav-link underline-animation" href={item.slug?.current}>{item?.title}</a>
               </li>
             ))}
+
+            <li className="nav-item">
+              <a className="nav-link underline-animation" onClick={() => scrollToSection('contact')} href="/#contact">Contact</a>
+            </li>
 
           </ul>
         </div>

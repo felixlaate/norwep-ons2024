@@ -6,7 +6,7 @@ export async function GET(request: Request) {
     //console.log('Fetch pages')
 
     const user = await client.fetch(`
-        *[_type=="site" && _id == 'd6ced41a-c310-414f-b878-c25b01ad4f4a' ] {
+        *[_type=="site" && _id == 'd6ced41a-c310-414f-b878-c25b01ad4f4a' ][0] {
             _id,
             pages[]->{
                 _id,

@@ -96,8 +96,9 @@ export default async function Home() {
             <About description={site[0].description} />
           </div>
         </div>
-
-        <Footer />
+        <div id="contact" className='pb-5'>
+          <Footer />
+        </div>
 
       </div>
 

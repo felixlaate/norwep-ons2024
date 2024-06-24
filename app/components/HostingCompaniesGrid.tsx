@@ -40,12 +40,12 @@ export default function DelegationsGrid() {
     if (!data) return <div>Loading...</div>
 
     return (
-        <div className="row row-cols-md-4 g-4 mb-4 align-items-center">
+        <div className="row row-cols-md-6 g-4 mb-4 align-items-center">
             {data && data.map((item: any, index: number) => (
                 <div key={index} className="col">
                     <div className="border text-center">
-                        <div className="d-flex justify-content-center align-items-center" style={{ height: '300px', margin: 'auto' }}>
-                            <img src={item.imageUrl} className="img-fluid p-5" style={{ maxHeight: '300px' }} alt={item.name} />
+                        <div className="d-flex justify-content-center align-items-center" style={{ height: '200px', margin: 'auto' }}>
+                            <img src={item.imageUrl} className="img-fluid p-3" style={{ maxHeight: '200px' }} alt={item.name} />
                         </div>
                     </div>
                 </div>
