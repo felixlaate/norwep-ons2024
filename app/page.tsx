@@ -1,95 +1,109 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import About from './components/About'
+import Delegations from './components/Delegations'
+import Footer from './components/Footer'
+import HostingCompanies from './components/HostingCompanies'
+import Navbar from './components/Navbar'
+import Poster from './components/Poster'
+import { client } from './lib/clients/sanity'
 
-export default function Home() {
+export default async function Home() {
+
+  const site = await client.fetch<any[]>(`
+    *[_type=="site" && _id == 'd6ced41a-c310-414f-b878-c25b01ad4f4a' ] {
+      _id,
+      _updatedAt,
+      title,
+      slogan,
+      description,
+      contacts[]->{
+        _id,
+        firstName,
+        lastName,
+        position,
+        company,
+        code,
+        phone,
+        email,
+        "imageUrl": image.asset->url
+      },
+      "imageUrl": image.asset->url,
+      "videoUrl": video.asset->url,
+      pages[]->{
+        _id,
+        title,
+        description,
+        image,      
+        slug
+      },  
+      promos[]->{
+        _id,
+        title,
+        description,
+        image,
+        video,
+        page->{
+          _id,
+          title,
+          description,
+          image,
+          slug
+        }
+      }, 
+      sponsors[]->{
+        _id,
+        title,
+        company->{
+          _id,
+          name,
+          "imageUrl": logo.asset->url,
+          url
+        },
+        level,
+        slug
+      },
+      links[]->{
+        _id,
+        name,
+        url,
+      },      
+    }
+    `,
+    {},
+    {
+      next: {
+        revalidate: 0 // look for updates to revalidate cache every xx
+      }
+    }
+  )
+
+  //if (site) dispatch({ type: "setSite", site: site })
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <div>
+        <div className="container">
+          <Navbar pages={site[0].pages} />
+          <div className='pb-5'>
+            <Poster imageUrl={site[0].imageUrl} videoUrl={site[0].videoUrl} />
+          </div>
+          <div id="delegations" className='pb-5'>
+            <Delegations />
+          </div>
+          <div id="hostingCompanies" className='pb-5'>
+            <HostingCompanies />
+          </div>
+          <div id="about" className='pb-5'>
+            <About description={site[0].description} />
+          </div>
         </div>
+
+        <Footer contacts={site[0].contacts} />
+
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
     </main>
-  );
+
+  )
 }
