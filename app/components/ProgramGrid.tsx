@@ -50,31 +50,45 @@ export default function DelegationsGrid() {
 
     return (
         <>
-            {data && data.map((item: any, index: number) => (
-                <div key={index} className="row">
-                    <div className="col border-bottom mb-3 mt-3">
-                        <h4>{item.name}</h4>
-                        {item.happenings && item.happenings.map((item: any, index: number) => (
-                            <div key={index} className="border p-3 mt-3 mb-3">
-                                <h6 className="pt-2 pb-2">{item.name}</h6>
-                                <div>
-                                    <BsClock className="mb-1 me-3" />
-                                    {format(new Date(item.startTime.local), "HH:mm") + ' - ' + format(new Date(item.endTime.local), "HH:mm")}</div>
-                                <div>
-                                    <BsPinMap className="mb-1 me-3" />
-                                    {item.meetingPoint}
-                                </div>
-                                <div className="pt-3">
-                                    <PortableText
-                                        value={item.description}
-                                        components={portableTextComponents}
-                                    />
-                                </div>
-                            </div>
+            <div className="row">
+                <div className="col-md-3 bg-light">
+                    <ul className="nav flex-column bg-light sticky-top">
+                        {data && data.map((item: any, index: number) => (
+                            <li key={index} className="nav-item pb-3">
+                                <a className="nav-link underline-animation" href="#">{item.name}</a>
+                            </li>
                         ))}
-                    </div>
+                    </ul>
                 </div>
-            ))}
+                <div className="col-md-8">
+                    <h3 className="pt-3">Program</h3>
+                    {data && data.map((item: any, index: number) => (
+                        <div key={index} className="row">
+                            <div className="col border-bottom mb-3 mt-3">
+                                <h4>{item.name}</h4>
+                                {item.happenings && item.happenings.map((item: any, index: number) => (
+                                    <div key={index} className="border p-3 mt-3 mb-3">
+                                        <h6 className="pt-2 pb-2">{item.name}</h6>
+                                        <div>
+                                            <BsClock className="mb-1 me-3" />
+                                            {format(new Date(item.startTime.local), "HH:mm") + ' - ' + format(new Date(item.endTime.local), "HH:mm")}</div>
+                                        <div>
+                                            <BsPinMap className="mb-1 me-3" />
+                                            {item.meetingPoint}
+                                        </div>
+                                        <div className="pt-3">
+                                            <PortableText
+                                                value={item.description}
+                                                components={portableTextComponents}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </>
     )
 }

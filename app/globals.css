@@ -139,6 +139,43 @@ a {
   background-color: transparent;
 }
 
+#about p {
+  font-size: 20px !important;
+  line-height: 28px !important;
+}
+
+#about li {
+  font-size: 20px !important;
+  line-height: 28px !important;
+}
+
+#footer p {
+  font-size: 16px !important;
+  line-height: 20px !important;
+}
+
+#footer li {
+  font-size: 16px !important;
+  line-height: 20px !important;
+}
+
+#footer a {
+  font-size: 16px !important;
+  line-height: 20px !important;
+}
+
+.sticky-top {
+  top: 20px;
+  /* Adjust the offset from the top */
+  z-index: 1020;
+  /* Ensures it stays above other content */
+  background-color: white;
+  /* Optional: adds background to make it stand out */
+  padding: 10px;
+  /* Optional: adds padding around the menu items */
+}
+
+
 /*
 a.underline-animation {
   position: relative;

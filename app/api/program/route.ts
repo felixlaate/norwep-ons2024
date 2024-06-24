@@ -9,7 +9,7 @@ export async function GET(request: Request) {
         *[ _type=='program' && event._ref==$id] {
             _id,
             name,
-            "happenings": *[ _type=='happening' && program._ref==^._id]
+            "happenings": *[ _type=='happening' && program._ref==^._id] | order(startTime.utc)
         }`,
         {
             id: 'a084e590-19de-493d-aa52-6dc07e341a20'

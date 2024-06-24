@@ -13,7 +13,6 @@ export default async function Home() {
                 <div className="container">
                     <Navbar />
                     <div className='pt-5 pb-5'>
-                        <h1 className='display-4'>Program</h1>
                         <ProgramGrid />
                     </div>
                 </div>

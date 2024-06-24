@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
 
     useEffect(() => {
         getData('/api/contacts').then((result) => {
-            console.log('Footer', result)
+            //console.log('Footer', result)
             setData(result.contacts)
         })
     }, [])
@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
                             <div className="col-md-10">
                                 <div className='row no-gutters'>
                                     {data && data.map((contact: any, index: number) => (
-                                        <div key={index} className='col-lg-3 col-md-4 col-xs-6 text-center'>
+                                        <div key={index} className='col-lg-3 col-md-4 col-xs-6 g-3 text-center'>
                                             <img className="rounded-circle" src={contact.imageUrl} width="150" alt="" />
                                             <div className='name pb-2 pt-2'>
                                                 <strong>{contact.firstName} {contact.lastName}</strong>
@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
                                                 {contact.position}
                                             </div>
                                             <div className=''>
-                                                <a href={`mailto:${contact.email}`} className="link-warning">{contact.email}</a>
+                                                <a href={`mailto:${contact.email}`} className="link-warning">e-mail</a>
                                             </div>
                                             <div className='pb-3'>
                                                 <a href={`tel:${contact.phone}`} className="link-warning">{contact.code} {contact.phone}</a>

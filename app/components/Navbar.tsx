@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     getData('/api/pages').then((result) => {
-      console.log('Navbar', result)
+      //console.log('Navbar', result)
       setData(result.pages)
     })
   }, [])
@@ -36,7 +36,10 @@ const Navbar: React.FC = () => {
   return (
     <nav className="navbar navbar-norwep navbar-expand-lg bg-body-tertiary pt-5">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/"><img src="/img/01-Hovedlogo-RGB.svg" width="177" height="40" className="d-inline-block align-top" /></a>
+        <a className="navbar-brand" href="/">
+          <img src="/img/01-Hovedlogo-RGB.png" width="177" height="40" className="d-inline-block align-top pe-3" />
+          <img src="/img/ons-logo.png" width="112" height="36" className="d-inline-block align-top mt-1" />
+        </a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -52,12 +55,12 @@ const Navbar: React.FC = () => {
               <a className="nav-link underline-animation" onClick={() => scrollToSection('hostingCompanies')} href="/#hostingCompanies">Hosting companies</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link underline-animation" href="program">Program</a>
+              <a className="nav-link underline-animation" href="/program">Program</a>
             </li>
 
             {data?.map((item: any) => (
               <li key={item._id} className="nav-item">
-                <a className="nav-link underline-animation" href={item.slug?.current}>{item?.title}</a>
+                <a className="nav-link underline-animation" href={'/page/' + item._id}>{item?.title}</a>
               </li>
             ))}
 
