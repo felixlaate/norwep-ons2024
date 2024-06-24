@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import BootstrapClient from './components/BootstrapClient'
 import 'bootstrap/dist/css/bootstrap.css';
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-
-import BootstrapClient from '@/app/components/BootstrapClient.js';
 
 export const metadata: Metadata = {
   title: "Norwegian Export Heros",
