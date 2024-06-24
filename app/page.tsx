@@ -82,7 +82,7 @@ export default async function Home() {
     <main>
       <div>
         <div className="container">
-          <Navbar pages={site[0].pages} />
+          <Navbar />
           <div className='pb-5'>
             <Poster imageUrl={site[0].imageUrl} videoUrl={site[0].videoUrl} />
           </div>
