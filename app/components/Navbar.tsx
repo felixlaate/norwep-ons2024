@@ -1,21 +1,28 @@
 'use client'
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { usePathname } from 'next/navigation'
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect'
 
-interface NavbarProps {
-  pages: any,
-}
-
-const Navbar: React.FC<NavbarProps> = ({ pages }) => {
+const Navbar: React.FC = () => {
 
   const pathname = usePathname()
+  const [data, setData] = useState<any>([])
 
   useEffect(() => {
-    //console.log('pathname', pathname)
-    //console.log(isMobile)
+    getData('/api/pages').then((result) => {
+      console.log('Navbar', result)
+      setData(result.pages)
+    })
   }, [])
+
+  async function getData(url: string) {
+    const res = await fetch(url)
+    if (!res.ok) {
+      throw new Error('Failed to fetch data')
+    }
+    return res.json()
+  }
 
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId)
@@ -23,6 +30,8 @@ const Navbar: React.FC<NavbarProps> = ({ pages }) => {
       section.scrollIntoView({ behavior: 'smooth' })
     }
   }
+
+  //if (!data) return <div>Loading...</div>
 
   return (
     <nav className="navbar navbar-norwep navbar-expand-lg bg-body-tertiary pt-5">
@@ -40,9 +49,12 @@ const Navbar: React.FC<NavbarProps> = ({ pages }) => {
               <a className="nav-link underline-animation" onClick={() => scrollToSection('hostingCompanies')} href="#hostingCompanies">Hosting companies</a>
             </li>
             <li className="nav-item">
+              <a className="nav-link underline-animation" href="program">Program</a>
+            </li>
+            <li className="nav-item">
               <a className="nav-link underline-animation" onClick={() => scrollToSection('about')} href="#about">About</a>
             </li>
-            {pages?.map((item: any) => (
+            {data?.map((item: any) => (
               <li key={item._id} className="nav-item">
                 <a className="nav-link underline-animation" href={item.slug?.current}>{item?.title}</a>
               </li>

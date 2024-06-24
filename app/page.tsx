@@ -97,7 +97,7 @@ export default async function Home() {
           </div>
         </div>
 
-        <Footer contacts={site[0].contacts} />
+        <Footer />
 
       </div>
 

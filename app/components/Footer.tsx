@@ -1,16 +1,27 @@
 "use client"
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-interface FooterProps {
-    contacts: any,
-}
+const Footer: React.FC = () => {
 
-const Footer: React.FC<FooterProps> = ({ contacts }) => {
-
+    const [data, setData] = useState<any>([])
 
     useEffect(() => {
+        getData('/api/contacts').then((result) => {
+            console.log('Footer', result)
+            setData(result.contacts)
+        })
     }, [])
+
+    async function getData(url: string) {
+        const res = await fetch(url)
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+        return res.json()
+    }
+
+    if (!data) return <div>Loading...</div>
 
     return (
         <div id="footer" className="p-5">
@@ -25,7 +36,7 @@ const Footer: React.FC<FooterProps> = ({ contacts }) => {
                         <div className="row border-top pt-4 pb-4">
                             <div className="col-md-10">
                                 <div className='row no-gutters'>
-                                    {contacts && contacts.map((contact: any, index: number) => (
+                                    {data && data.map((contact: any, index: number) => (
                                         <div key={index} className='col-lg-3 col-md-4 col-xs-6 text-center'>
                                             <img className="rounded-circle" src={contact.imageUrl} width="150" alt="" />
                                             <div className='name pb-2 pt-2'>

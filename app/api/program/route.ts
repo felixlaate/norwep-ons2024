@@ -3,20 +3,13 @@ import { client } from '@/app/lib/clients/eventsSanity'
 export const dynamic = 'force-dynamic' // defaults to auto
 
 export async function GET(request: Request) {
-    //console.log('Fetch contacts')
+    //console.log('Fetch program')
 
     const user = await client.fetch(`
-        *[ _type=='event' && _id==$id ][0] {
+        *[ _type=='program' && event._ref==$id] {
+            _id,
             name,
-            contacts[]->{
-                _id,
-                firstName,
-                lastName,
-                position,
-                phoneNumber,
-                email,
-                "imageUrl": avatar.asset->url
-            }
+            "happenings": *[ _type=='happening' && program._ref==^._id]
         }`,
         {
             id: 'a084e590-19de-493d-aa52-6dc07e341a20'
