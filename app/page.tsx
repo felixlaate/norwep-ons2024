@@ -49,6 +49,12 @@ export default async function Home() {
           slug
         }
       }, 
+      hostingCompanies[]->{
+        _id,
+        title,
+        id,
+        level
+      },
       sponsors[]->{
         _id,
         title,
@@ -90,7 +96,7 @@ export default async function Home() {
             <Delegations />
           </div>
           <div id="hostingCompanies" className='pb-5'>
-            <HostingCompanies />
+            <HostingCompanies data={site[0].hostingCompanies} />
           </div>
           <div id="about" className='pb-5'>
             <About description={site[0].description} />

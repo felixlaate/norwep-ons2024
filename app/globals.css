@@ -175,6 +175,21 @@ a {
   /* Optional: adds padding around the menu items */
 }
 
+.poster-overlay {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  width: 75%;
+  background-color: #efefef;
+  opacity: 0.7;
+  padding: 10px;
+  text-align: right;
+  border-radius: 0px 20px 20px 0px
+}
+
+.hosting-company-category {
+  color: #aaa !important;
+}
 
 /*
 a.underline-animation {

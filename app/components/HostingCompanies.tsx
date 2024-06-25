@@ -1,11 +1,17 @@
 import HostingCompaniesGrid from './HostingCompaniesGrid'
 
-export default async function HostingCompanies() {
+interface HostingCompaniesProps {
+    data: any
+}
+
+const HostingCompanies: React.FC<HostingCompaniesProps> = ({ data }) => {
 
     return (
         <>
             <h3>Hosting Companies</h3>
-            <HostingCompaniesGrid />
+            <HostingCompaniesGrid data={data} />
         </>
     )
 }
+
+export default HostingCompanies

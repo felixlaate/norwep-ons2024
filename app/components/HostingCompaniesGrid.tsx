@@ -2,54 +2,127 @@
 
 import { useEffect, useState } from "react"
 
-export default function DelegationsGrid() {
+interface HostingCompaniesGridProps {
+    data: any
+}
 
-    const [data, setData] = useState<any>([])
+const HostingCompaniesGrid: React.FC<HostingCompaniesGridProps> = ({ data }) => {
+
+    //const [data, setData] = useState<any>([])
+    const [groupedEventCompanies, setGroupedEventCompanies] = useState<any>({
+        0: [],
+        1: [],
+        2: [],
+        3: []
+    })
 
     useEffect(() => {
-        getData('/api/participants').then((result) => {
-            // Extract companies from the data
-            const companies = result
-                .map((item: any) => item.participant.company)
-                .filter((company: any) => company !== null)// Filter out null companies
+        const fetchEventCompanies = async () => {
+            try {
+                const results = await Promise.all(
+                    data.map(async (item: any) => {
+                        const response = await fetch('/api/eventCompany/' + item.id)
+                        const result = await response.json()
+                        //console.log('Result', result)
+                        return { ...item, level: parseInt(item.level), ...result } // Merge item with fetched result
+                    })
+                )
 
-            // Filter unique companies by _id
-            const uniqueCompanies = companies.filter((company: any, index: number, self: any) =>
-                index === self.findIndex((c: any) => c._id === company._id)
-            )
+                console.log('Results', results)
 
-            // Format the companies as required
-            const formattedCompanies = uniqueCompanies.map((company: any) => ({
-                _id: company._id,
-                name: company.name,
-                imageUrl: company.imageUrl
-            }))
-            console.log('HostingCompaniesGrid', formattedCompanies)
-            setData(formattedCompanies)
-        })
-    }, [])
+                // Group the results by level
+                const grouped: any = {
+                    0: results.filter(item => item.level === 0),
+                    1: results.filter(item => item.level === 1),
+                    2: results.filter(item => item.level === 2),
+                    3: results.filter(item => item.level === 3)
+                }
 
-    async function getData(url: string) {
-        const res = await fetch(url)
-        if (!res.ok) {
-            throw new Error('Failed to fetch data')
+                console.log('grouped', grouped)
+
+                setGroupedEventCompanies(grouped)
+            } catch (error) {
+                console.error('Error fetching event companies:', error)
+            }
         }
-        return res.json()
+
+        if (data) {
+            fetchEventCompanies()
+        }
+    }, [data])
+
+    // Function to render companies by level
+    const renderCompaniesByLevel = (level: any) => {
+        return groupedEventCompanies[level].map((item: any, index: number) => (
+            <div key={index} className="col">
+                <div className="border text-center">
+                    <div className="d-flex justify-content-center align-items-center" style={{ height: '200px', margin: 'auto' }}>
+                        <img src={item.imageUrl} className="img-fluid p-3" style={{ maxHeight: '200px' }} alt={item.name} />
+                    </div>
+                </div>
+            </div>
+        ))
     }
 
     if (!data) return <div>Loading...</div>
 
     return (
-        <div className="row row-cols-md-6 g-4 mb-4 align-items-center">
-            {data && data.map((item: any, index: number) => (
-                <div key={index} className="col">
-                    <div className="border text-center">
-                        <div className="d-flex justify-content-center align-items-center" style={{ height: '200px', margin: 'auto' }}>
-                            <img src={item.imageUrl} className="img-fluid p-3" style={{ maxHeight: '200px' }} alt={item.name} />
+        <div>
+
+            <h5 className='hosting-company-category pb-3'>Category D</h5>
+            <div className="row row-cols-md-6 g-4 mb-4 align-items-center">
+                {groupedEventCompanies && groupedEventCompanies[3].map((item: any, index: number) => (
+                    <div key={index} className="col">
+                        <div className="border text-center">
+                            <div className="d-flex justify-content-center align-items-center" style={{ height: '200px', margin: 'auto' }}>
+                                <img src={item.imageUrl} className="img-fluid p-3" style={{ maxHeight: '200px' }} alt={item.name} />
+                            </div>
                         </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
+
+            <h5 className='hosting-company-category pb-3'>Category C</h5>
+            <div className="row row-cols-md-6 g-4 mb-4 align-items-center">
+                {groupedEventCompanies && groupedEventCompanies[2].map((item: any, index: number) => (
+                    <div key={index} className="col">
+                        <div className="border text-center">
+                            <div className="d-flex justify-content-center align-items-center" style={{ height: '200px', margin: 'auto' }}>
+                                <img src={item.imageUrl} className="img-fluid p-3" style={{ maxHeight: '200px' }} alt={item.name} />
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <h5 className='hosting-company-category pb-3'>Category B</h5>
+            <div className="row row-cols-md-6 g-4 mb-4 align-items-center">
+                {groupedEventCompanies && groupedEventCompanies[1].map((item: any, index: number) => (
+                    <div key={index} className="col">
+                        <div className="border text-center">
+                            <div className="d-flex justify-content-center align-items-center" style={{ height: '200px', margin: 'auto' }}>
+                                <img src={item.imageUrl} className="img-fluid p-3" style={{ maxHeight: '200px' }} alt={item.name} />
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <h5 className='hosting-company-category pb-3'>Category A</h5>
+            <div className="row row-cols-md-6 g-4 mb-4 align-items-center">
+                {groupedEventCompanies && groupedEventCompanies[0].map((item: any, index: number) => (
+                    <div key={index} className="col">
+                        <div className="border text-center">
+                            <div className="d-flex justify-content-center align-items-center" style={{ height: '200px', margin: 'auto' }}>
+                                <img src={item.imageUrl} className="img-fluid p-3" style={{ maxHeight: '200px' }} alt={item.name} />
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
         </div>
     )
 }
+
+export default HostingCompaniesGrid

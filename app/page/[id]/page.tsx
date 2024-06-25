@@ -51,7 +51,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             <div>
                 <div className="container">
                     <Navbar />
-                    <div className='pt-5 pb-5'>
+                    <div className='mt-5 pt-5 pb-5'>
                         <div className='row'>
                             <div className="col-md-2"></div>
                             <div className="col-md-8">
