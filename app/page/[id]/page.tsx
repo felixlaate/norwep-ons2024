@@ -1,6 +1,7 @@
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import Footer from '../../components/Footer'
 import Navbar from '../../components/Navbar'
+import Image from '../../components/Image'
 import { client } from '../../lib/clients/sanity'
 
 export default async function Page({ params }: { params: { id: string } }) {
@@ -9,7 +10,9 @@ export default async function Page({ params }: { params: { id: string } }) {
         *[_type=="page" && _id == $id ][0] {
             _id,
             title,
-            description
+            description,
+            "imageUrl": image.asset->url,
+            "videoUrl": video.asset->url
         }
         `,
         {
@@ -51,7 +54,10 @@ export default async function Page({ params }: { params: { id: string } }) {
             <div>
                 <div className="container">
                     <Navbar />
-                    <div className='mt-5 pt-5 pb-5'>
+                    <div className=''>
+                        <Image imageUrl={data.imageUrl} />
+                    </div>
+                    <div className='pt-5 pb-5'>
                         <div className='row'>
                             <div className="col-md-2"></div>
                             <div className="col-md-8">

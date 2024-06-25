@@ -28,7 +28,7 @@ const HostingCompaniesGrid: React.FC<HostingCompaniesGridProps> = ({ data }) => 
                     })
                 )
 
-                console.log('Results', results)
+                //console.log('Results', results)
 
                 // Group the results by level
                 const grouped: any = {

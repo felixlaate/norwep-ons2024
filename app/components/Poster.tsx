@@ -10,8 +10,8 @@ interface PosterProps {
 const Poster: React.FC<PosterProps> = ({ imageUrl, videoUrl }) => {
 
     useEffect(() => {
-        console.log('imageUrl', imageUrl)
-        console.log('videoUrl', videoUrl)
+        //console.log('imageUrl', imageUrl)
+        //console.log('videoUrl', videoUrl)
     }, [])
 
     if (!imageUrl) return <>Loading...</>

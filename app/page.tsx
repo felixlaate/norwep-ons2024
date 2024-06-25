@@ -1,4 +1,4 @@
-import About from './components/About'
+//import About from './components/About'
 import Delegations from './components/Delegations'
 import Footer from './components/Footer'
 import HostingCompanies from './components/HostingCompanies'
@@ -97,9 +97,6 @@ export default async function Home() {
           </div>
           <div id="hostingCompanies" className='pb-5'>
             <HostingCompanies data={site[0].hostingCompanies} />
-          </div>
-          <div id="about" className='pb-5'>
-            <About description={site[0].description} />
           </div>
         </div>
         <div id="contact" className='pb-5'>
