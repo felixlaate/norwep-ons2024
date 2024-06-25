@@ -11,9 +11,8 @@ export default async function Page({ params }: { params: { id: string } }) {
             _id,
             title,
             description,
-            "imageUrl": image.asset->url,
-            "videoUrl": video.asset->url
-        }
+            "imageUrl": image.asset->url
+        } 
         `,
         {
             id: params.id
