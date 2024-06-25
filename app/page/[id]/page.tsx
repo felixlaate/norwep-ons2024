@@ -61,7 +61,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                             <div className="col-md-2"></div>
                             <div className="col-md-8">
                                 <h3>{data.title}</h3>
-                                <div className="pt-3">
+                                <div className="page-description pt-3">
                                     <PortableText
                                         value={data.description}
                                         components={portableTextComponents}

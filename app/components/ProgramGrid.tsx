@@ -67,7 +67,7 @@ export default function DelegationsGrid() {
                             </li>
                         ))}
                     </ul>*/}
-                    <div className="sticky-top">
+                    <div className="sticky-top  d-none d-md-block">
                         <ul>
                             <div className="pt-3 mb-2 border-bottom"><strong>Select date</strong></div>
                             {data && data.map((item: { _id: string, name: string }, index: number) => (
@@ -96,7 +96,7 @@ export default function DelegationsGrid() {
                                             <BsPinMap className="mb-1 me-3" />
                                             {item.meetingPoint}
                                         </div>
-                                        <div className="pt-3">
+                                        <div className="page-description pt-3">
                                             <PortableText
                                                 value={item.description}
                                                 components={portableTextComponents}
