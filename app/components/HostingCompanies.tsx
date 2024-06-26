@@ -9,7 +9,10 @@ const HostingCompanies: React.FC<HostingCompaniesProps> = ({ data }) => {
     return (
         <>
             <h3>Hosting Companies</h3>
-            <HostingCompaniesGrid data={data} />
+            <em>Click on logos for contact information</em>
+            <div className='pt-5 pb-5'>
+                <HostingCompaniesGrid data={data} />
+            </div>
         </>
     )
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import Link from "next/link"
 import { useEffect, useState } from "react"
 
 interface HostingCompaniesGridProps {
@@ -67,61 +68,62 @@ const HostingCompaniesGrid: React.FC<HostingCompaniesGridProps> = ({ data }) => 
     if (!data) return <div>Loading...</div>
 
     return (
-        <div>
-
-            <h5 className='hosting-company-category pb-3'>Category D</h5>
-            <div className="row row-cols-2 row-cols-md-6 g-4 mb-4 align-items-center">
-                {groupedEventCompanies && groupedEventCompanies[3].map((item: any, index: number) => (
-                    <div key={index} className="col">
-                        <div className="border text-center">
-                            <div className="d-flex justify-content-center align-items-center" style={{ height: '200px', margin: 'auto' }}>
-                                <img src={item.imageUrl} className="img-fluid p-3" style={{ maxHeight: '200px' }} alt={item.name} />
+        <>
+            <div>
+                <h5 className='hosting-company-category pb-3'>Category D</h5>
+                <div className="row row-cols-2 row-cols-md-6 g-4 mb-4 align-items-center">
+                    {groupedEventCompanies && groupedEventCompanies[3].map((item: any, index: number) => (
+                        <div key={index} className="col">
+                            <div className="border text-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <div className="d-flex justify-content-center align-items-center" style={{ height: '200px', margin: 'auto' }}>
+                                    <Link href={'/company/' + item._id}><img src={item.imageUrl} className="img-fluid p-3" style={{ maxHeight: '200px' }} alt={item.name} /></Link>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
 
-            <h5 className='hosting-company-category pb-3'>Category C</h5>
-            <div className="row row-cols-2 row-cols-md-6 g-4 mb-4 align-items-center">
-                {groupedEventCompanies && groupedEventCompanies[2].map((item: any, index: number) => (
-                    <div key={index} className="col">
-                        <div className="border text-center">
-                            <div className="d-flex justify-content-center align-items-center" style={{ height: '200px', margin: 'auto' }}>
-                                <img src={item.imageUrl} className="img-fluid p-3" style={{ maxHeight: '200px' }} alt={item.name} />
+                <h5 className='hosting-company-category pb-3'>Category C</h5>
+                <div className="row row-cols-2 row-cols-md-6 g-4 mb-4 align-items-center">
+                    {groupedEventCompanies && groupedEventCompanies[2].map((item: any, index: number) => (
+                        <div key={index} className="col">
+                            <div className="border text-center">
+                                <div className="d-flex justify-content-center align-items-center" style={{ height: '200px', margin: 'auto' }}>
+                                    <Link href={'/company/' + item._id}><img src={item.imageUrl} className="img-fluid p-3" style={{ maxHeight: '200px' }} alt={item.name} /></Link>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
 
-            <h5 className='hosting-company-category pb-3'>Category B</h5>
-            <div className="row row-cols-2 row-cols-md-6 g-4 mb-4 align-items-center">
-                {groupedEventCompanies && groupedEventCompanies[1].map((item: any, index: number) => (
-                    <div key={index} className="col">
-                        <div className="border text-center">
-                            <div className="d-flex justify-content-center align-items-center" style={{ height: '200px', margin: 'auto' }}>
-                                <img src={item.imageUrl} className="img-fluid p-3" style={{ maxHeight: '200px' }} alt={item.name} />
+                <h5 className='hosting-company-category pb-3'>Category B</h5>
+                <div className="row row-cols-2 row-cols-md-6 g-4 mb-4 align-items-center">
+                    {groupedEventCompanies && groupedEventCompanies[1].map((item: any, index: number) => (
+                        <div key={index} className="col">
+                            <div className="border text-center">
+                                <div className="d-flex justify-content-center align-items-center" style={{ height: '200px', margin: 'auto' }}>
+                                    <Link href={'/company/' + item._id}><img src={item.imageUrl} className="img-fluid p-3" style={{ maxHeight: '200px' }} alt={item.name} /></Link>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
 
-            <h5 className='hosting-company-category pb-3'>Category A</h5>
-            <div className="row row-cols-2 row-cols-md-6 g-4 mb-4 align-items-center">
-                {groupedEventCompanies && groupedEventCompanies[0].map((item: any, index: number) => (
-                    <div key={index} className="col">
-                        <div className="border text-center">
-                            <div className="d-flex justify-content-center align-items-center" style={{ height: '200px', margin: 'auto' }}>
-                                <img src={item.imageUrl} className="img-fluid p-3" style={{ maxHeight: '200px' }} alt={item.name} />
+                <h5 className='hosting-company-category pb-3'>Category A</h5>
+                <div className="row row-cols-2 row-cols-md-6 g-4 mb-4 align-items-center">
+                    {groupedEventCompanies && groupedEventCompanies[0].map((item: any, index: number) => (
+                        <div key={index} className="col">
+                            <div className="border text-center">
+                                <div className="d-flex justify-content-center align-items-center" style={{ height: '200px', margin: 'auto' }}>
+                                    <Link href={'/company/' + item._id}><img src={item.imageUrl} className="img-fluid p-3" style={{ maxHeight: '200px' }} alt={item.name} /></Link>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-
-        </div>
+        </>
     )
 }
 
