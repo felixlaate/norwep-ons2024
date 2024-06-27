@@ -1,8 +1,10 @@
-import { PortableText, PortableTextComponents } from '@portabletext/react'
 import { BsLink } from "react-icons/bs"
+import { IoEarthOutline } from "react-icons/io5"
 import Footer from '../../components/Footer'
 import Navbar from '../../components/Navbar'
 import CompanyContacts from '../../components/CompanyContacts'
+import CompanyDescription from '../../components/CompanyDescription'
+import CompanyUvps from '../../components/CompanyUvps'
 import { client } from '../../lib/clients/eventsSanity'
 
 export default async function Company({ params }: { params: { id: string } }) {
@@ -12,7 +14,11 @@ export default async function Company({ params }: { params: { id: string } }) {
              _id,
             name,
             "imageUrl": logo.asset->url,
-            link
+            link,
+            enonicCompany->{
+               _id,
+               enonicId
+            } 
         }
         `,
         {
@@ -25,28 +31,6 @@ export default async function Company({ params }: { params: { id: string } }) {
         }
     )
 
-    const portableTextComponents: PortableTextComponents = {
-        types: {
-            image: ({ value }) => <img src={value.imageUrl} />,
-            callToAction: ({ value, isInline }) =>
-                isInline ? (
-                    <a href={value.url}>{value.text}</a>
-                ) : (
-                    <div className="callToAction">{value.text}</div>
-                ),
-        },
-        marks: {
-            link: ({ children, value }) => {
-                const rel = !value.href.startsWith('/') ? 'noreferrer noopener' : undefined
-                return (
-                    <a href={value.href} rel={rel}>
-                        {children}
-                    </a>
-                )
-            },
-        },
-    }
-
     if (!data) <>Loading...</>
 
     return (
@@ -57,15 +41,27 @@ export default async function Company({ params }: { params: { id: string } }) {
 
                     <div className='mt-5 pt-5 pb-5'>
                         <div className='row'>
-                            <div className="col-md-2"></div>
-                            <div className="col-md-6">
+                            <div className="col-md-1"></div>
+                            <div className="col-md-8">
                                 <h3>{data.name}</h3>
+
+                                {data.enonicCompany &&
+                                    <>
+                                        <div>
+                                            <CompanyDescription id={data.enonicCompany.enonicId} />
+                                        </div>
+                                        <div className="pt-5">
+                                            <h6 className="mb-3">Company value propositions</h6>
+                                            <CompanyUvps id={data.enonicCompany.enonicId} />
+                                        </div>
+                                    </>
+                                }
                             </div>
-                            <div className="col-md-4 border-start">
+                            <div className="col-md-3 border-start">
                                 <div className='mb-5'>
                                     <img src={data.imageUrl} className='img-fluid' />
                                 </div>
-                                <BsLink /> <a href={data.link} target="_blank">Visit website</a>
+                                <IoEarthOutline /> <a href={data.link} target="_blank">Visit website</a>
                                 <div>
                                     <h6 className='pt-5 pb-3'>Contacts</h6>
                                     <CompanyContacts id={params.id} />

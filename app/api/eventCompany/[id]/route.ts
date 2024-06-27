@@ -10,7 +10,8 @@ export async function GET(request: Request, { params }: { params: { id: string }
              _id,
             name,
             "imageUrl": logo.asset->url,
-            link
+            link,
+            enonicCompany
         }`,
         {
             id: params.id

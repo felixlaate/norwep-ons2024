@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
         <a className="navbar-brand" href="/">
           {/*<div className="lead pb-2 text-medium" style={{ fontSize: '14px' }}>International Markets is presented by:</div>*/}
 
-          <img src="/img/01-Hovedlogo-RGB.png" width="183" height="40" className="d-none d-md-inline-block align-top pe-3" alt="NORWEP" />
+          <img src="/img/01-Hovedlogo-SVART.svg" width="183" height="40" className="d-none d-md-inline-block align-top pe-3" alt="NORWEP" />
           <img src="/img/06-Symbol-RGB.svg" width="60" height="60" className="d-none d-sm-inline-block d-md-none align-top pe-2" alt="NORWEP" />
 
           <img src="/img/ons-logo.png" width="112" height="36" className="d-inline-block align-top mt-2" />

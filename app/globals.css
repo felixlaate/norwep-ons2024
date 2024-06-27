@@ -368,6 +368,14 @@ a.underline-animation:hover::after {
   cursor: pointer;
 }
 
+.uvp-small {
+  min-height: 500px;
+
+  padding: 52px 42px 45px;
+  border: 1px solid #C0C0C0;
+  border-top-right-radius: 40px;
+}
+
 .uvp {
   display: flex;
   flex-direction: column;

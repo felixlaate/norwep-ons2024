@@ -12,7 +12,7 @@ const CompanyContacts: React.FC<CompanyContactsProps> = ({ id }) => {
 
     useEffect(() => {
         getData('/api/eventCompanyContacts/' + id).then((result) => {
-            console.log('CompanyContacts', result)
+            //console.log('CompanyContacts', result)
             setData(result)
         })
     }, [])
@@ -33,7 +33,7 @@ const CompanyContacts: React.FC<CompanyContactsProps> = ({ id }) => {
                 <div key={index} className="row">
                     <div className="col">
                         <div className="pt-3 pb-3">
-                            <div className="">{item.firstName} {item.lastName}</div>
+                            <div className=""><strong>{item.firstName} {item.lastName}</strong></div>
                             <div className="">{item.position}</div>
                             <div className="">+{item.phoneNumber.countryCallingCode} {item.phoneNumber.phoneNumber}</div>
                             <div className="">{item.email}</div>
