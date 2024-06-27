@@ -70,7 +70,7 @@ const HostingCompaniesGrid: React.FC<HostingCompaniesGridProps> = ({ data }) => 
     return (
         <>
             <div>
-                <h5 className='hosting-company-category pb-3'>Category D  ({groupedEventCompanies[3].length})</h5>
+                <h5 className='hosting-company-category pb-3'>Category D</h5>
                 <div className="row row-cols-2 row-cols-md-6 g-4 mb-4 align-items-center">
                     {groupedEventCompanies && groupedEventCompanies[3].map((item: any, index: number) => (
                         <div key={index} className="col">
@@ -83,7 +83,7 @@ const HostingCompaniesGrid: React.FC<HostingCompaniesGridProps> = ({ data }) => 
                     ))}
                 </div>
 
-                <h5 className='hosting-company-category pb-3'>Category C ({groupedEventCompanies[2].length})</h5>
+                <h5 className='hosting-company-category pb-3'>Category C</h5>
                 <div className="row row-cols-2 row-cols-md-6 g-4 mb-4 align-items-center">
                     {groupedEventCompanies && groupedEventCompanies[2].map((item: any, index: number) => (
                         <div key={index} className="col">
@@ -96,7 +96,7 @@ const HostingCompaniesGrid: React.FC<HostingCompaniesGridProps> = ({ data }) => 
                     ))}
                 </div>
 
-                <h5 className='hosting-company-category pb-3'>Category B  ({groupedEventCompanies[1].length})</h5>
+                <h5 className='hosting-company-category pb-3'>Category B</h5>
                 <div className="row row-cols-2 row-cols-md-6 g-4 mb-4 align-items-center">
                     {groupedEventCompanies && groupedEventCompanies[1].map((item: any, index: number) => (
                         <div key={index} className="col">
@@ -110,7 +110,7 @@ const HostingCompaniesGrid: React.FC<HostingCompaniesGridProps> = ({ data }) => 
                     ))}
                 </div>
 
-                <h5 className='hosting-company-category pb-3'>Category A ({groupedEventCompanies[0].length})</h5>
+                <h5 className='hosting-company-category pb-3'>Category A</h5>
                 <div className="row row-cols-2 row-cols-md-6 g-4 mb-4 align-items-center">
                     {groupedEventCompanies && groupedEventCompanies[0].map((item: any, index: number) => (
                         <div key={index} className="col">
