@@ -6,7 +6,7 @@ export async function GET(request: Request) {
     //console.log('Fetch program')
 
     const user = await client.fetch(`
-        *[ _type=='program' && event._ref==$id] {
+        *[ _type=='program' && event._ref==$id] | order(date) {
             _id,
             name,
             "happenings": *[ _type=='happening' && program._ref==^._id] | order(startTime.utc)
